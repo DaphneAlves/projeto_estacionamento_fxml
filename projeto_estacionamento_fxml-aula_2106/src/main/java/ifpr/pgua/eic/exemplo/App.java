@@ -5,10 +5,7 @@ import java.util.ArrayList;
 import ifpr.pgua.eic.exemplo.controllers.TelaCadastro;
 import ifpr.pgua.eic.exemplo.controllers.TelaPrincipal;
 import ifpr.pgua.eic.exemplo.controllers.TelaVisualizar;
-import ifpr.pgua.eic.exemplo.infra.Escritor;
-import ifpr.pgua.eic.exemplo.infra.Leitor;
 import ifpr.pgua.eic.exemplo.models.Estacionamento;
-import ifpr.pgua.eic.exemplo.models.Veiculo;
 import io.github.hugoperlin.navigatorfx.BaseAppNavigator;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryFXML;
 import io.github.hugoperlin.navigatorfx.ScreenRegistryNoFXML;
@@ -33,10 +30,7 @@ public class App extends BaseAppNavigator{
     public void init() throws Exception {
         super.init();
 
-        Leitor leitor = new Leitor();
-        ArrayList<Veiculo> lista = leitor.carregar("veiculo.txt");
         gerenciador = new Estacionamento("SuperEstac", "1234-1234");
-        gerenciador.setVeiculos(lista);
     }
 
     /*método para indicar qual é a tela inicial da aplicação */
@@ -49,18 +43,7 @@ public class App extends BaseAppNavigator{
     @Override
     public String getAppTitle() {
         return "Quiz App";
-    }   
-
-    @Override
-    public void stop() throws Exception {
-        // TODO Auto-generated method stub
-        super.stop();
-        
-        Escritor escritor = new Escritor();
-        escritor.salvar("veiculo.txt", gerenciador.listaTodosVeiculos());
     }
-
-
 
     /*método para registrar as telas da aplicação*/
     @Override
